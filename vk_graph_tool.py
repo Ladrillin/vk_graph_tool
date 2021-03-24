@@ -46,7 +46,7 @@ def parse_friends(root_id, root_friendlist):
 #     login = access_file.readline()
 #     password = access_file.readline()
 
-token = '144b6950bfc8fcd8b7d2f98b8b4b30b380dea558040a471d2e1c500b1c6e611198b8d4b0b7d154f392244'
+token = ''
 vk_session = vk_api.VkApi(token=token)
 # try:
 #     vk_session.auth()
