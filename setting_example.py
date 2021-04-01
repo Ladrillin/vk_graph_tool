@@ -1,0 +1,1 @@
+token="Here is your token for vk api"

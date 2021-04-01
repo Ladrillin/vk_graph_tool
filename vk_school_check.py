@@ -9,15 +9,33 @@ def get_friends_info(id):
 
     return vk.users.get(user_ids=friend_ids, fields=fields)
 
+def get_school_most_time(schools):
+    if len(schools) == 1: 
+        return schools[0]["name"]
+
+    max_diff = -1
+    school_with_most_time = ""
+
+    for school in schools:
+        year_from = school.get("year_from", 0)
+        year_to = school.get("year_to", 0)
+        diff = year_to - year_from
+
+        if diff > max_diff:
+            max_diff = diff
+            school_with_most_time = school["name"]
+        
+    return school_with_most_time
+
 def get_potencial_schools(info):
     school_counters = {}
     counter = 0
 
     for info in friends_info:
-        school = info.get("schools", [])
+        schools = info.get("schools", [])
         
-        if school:
-            school_name = school[0]["name"] # вот тут надо на самом деле подумать о том, как взять школу, а не только первую
+        if schools:
+            school_name = get_school_most_time(schools) # вот тут надо на самом деле подумать о том, как взять школу
 
             c = school_counters.get(school_name, 0)
             school_counters[school_name] = c + 1
@@ -32,12 +50,11 @@ def get_potencial_schools(info):
 vk_session = vk_api.VkApi(token=token)
 vk = vk_session.get_api()
 
-friends_info = get_friends_info(50802341)
+id = 50802341
+
+friends_info = get_friends_info(id)
 school_counters = get_potencial_schools(friends_info)
 
 for name, value in school_counters.items():
-    print(f"{name} - {value}")
+    print(f"{value} - {name}")
 
-# best_school_possibility = max(school_counters, key=school_counters.get)
-
-# print(best_school_possibility)
