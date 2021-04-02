@@ -1,4 +1,4 @@
-from api.api import vk
+from api import vk
 
 def get_friends(id):
     return vk.friends.get(user_id=id)["items"]

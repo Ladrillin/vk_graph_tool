@@ -1,4 +1,4 @@
-from api.api import vk
+from api import vk
 from vk_group_find import get_group
 
 fields = "sex, bdate, city, country, home_town, has_mobile, contacts, education, universities, schools, occupation, relatives, relation, personal, connections, activities, interests, music, movies, tv, books, games, about, timezone, maiden_name, career, military"

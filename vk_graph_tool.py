@@ -1,7 +1,7 @@
-from api.api import vk
 import networkx as nx
 import matplotlib.pyplot as mpl
 
+from api import vk
 
 def auth_handler():
     code = input('Input auth code: ')
