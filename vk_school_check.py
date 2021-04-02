@@ -1,5 +1,5 @@
-import vk_api
-from settings import token
+from api.api import vk
+from vk_group_find import get_group
 
 fields = "sex, bdate, city, country, home_town, has_mobile, contacts, education, universities, schools, occupation, relatives, relation, personal, connections, activities, interests, music, movies, tv, books, games, about, timezone, maiden_name, career, military"
 
@@ -47,14 +47,12 @@ def get_potencial_schools(info):
 
     return school_counters
 
-vk_session = vk_api.VkApi(token=token)
-vk = vk_session.get_api()
+if __name__ == "__main__":
+    id = 154623861
 
-id = 50802341
+    friends_info = get_friends_info(id)
+    school_counters = get_potencial_schools(friends_info)
 
-friends_info = get_friends_info(id)
-school_counters = get_potencial_schools(friends_info)
-
-for name, value in school_counters.items():
-    print(f"{value} - {name}")
+    for name, value in school_counters.items():
+        print(f"{value} - {name}")
 

@@ -1,5 +1,4 @@
-import vk_api
-from settings import token
+from api.api import vk
 
 def get_friends(id):
     return vk.friends.get(user_id=id)["items"]
@@ -26,11 +25,9 @@ def get_group(root_id, friend_id):
     
     return list(real_group)
 
-vk_session = vk_api.VkApi(token=token)
-vk = vk_session.get_api()
 
-id = 51422811
+if __name__ == "__main__":
+    id = 51422811
+    friend_ids = get_friends(id)
 
-friend_ids = get_friends(id)
-
-print(get_group(id, friend_ids[0]))
+    print(get_group(id, friend_ids[0]))

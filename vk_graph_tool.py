@@ -1,4 +1,4 @@
-import vk_api
+from api.api import vk
 import networkx as nx
 import matplotlib.pyplot as mpl
 
@@ -24,26 +24,12 @@ def parse_friends(root_id, root_friendlist):
             for mutual_friend in get_mutual:
                 graph_network.add_edge(root_mutual_friend_id, mutual_friend)
                 edge_counter += 1
-        except vk_api.exceptions.ApiError:  # Эксепшн для случаев, когда профиль юзера закрыт
+        except:  # Эксепшн для случаев, когда профиль юзера закрыт
             continue
 
     nx.draw(graph_network, with_labels=True, font_color='g', font_size=12)
     print(edge_counter)
     return mpl.show()
-
-
-with open('access_to_vk.txt', 'r') as access_file:
-    login = access_file.readline()
-    password = access_file.readline()
-
-vk_session = vk_api.VkApi(login=login,
-                          password=password,
-                          auth_handler=auth_handler)
-try:
-    vk_session.auth()
-except vk_api.AuthError as error_msg:
-    print(error_msg)
-vk = vk_session.get_api()
 
 source_id = 142898628
 source_friends = vk.friends.get(user_id=source_id,)
