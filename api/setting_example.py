@@ -1,1 +1,1 @@
-token="Here is your token for vk api"
+token = "4415d511b7cd3b41598997e4f584641d50b7d0cc6f384cfc9dd55a5ff663d1365a7ae349b33c9cdf2c52a"

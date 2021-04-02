@@ -48,7 +48,7 @@ def get_potencial_schools(info):
     return school_counters
 
 if __name__ == "__main__":
-    id = 154623861
+    id = 141498951
 
     friends_info = get_friends_info(id)
     school_counters = get_potencial_schools(friends_info)
