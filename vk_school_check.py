@@ -56,27 +56,4 @@ def get_potencial_schools(friends_info):
         print(f"{value} - {name}") """
 
 # ---------------------------------------------------------------------------
-# 2 idea
-
-from vk_group_find import get_group # method to find groups from vk
-from dbF.get_groups import get_groups, add_group # method to get and add already parsed groups from vk
-
-id = 51422811
-
-groups = get_groups(id)
-print(groups)
-
-if len(groups) < 1:
-    res = vk.friends.get(user_id=id)["items"]
-    
-    while len(res) > 0:
-        friend_id = res[0]
-        group = get_group(id, friend_id)
-
-        res = list(set(res) - set(group))
-
-        if len(group) > 5: # Здесь можно подумать о том, со скольки человек считать некое сообщество залинкованных друзей группой
-            groups.append(group)
-            add_group(id, group)
-
-return groups
+# 2 idea was bad and very slow
