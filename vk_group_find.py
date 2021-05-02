@@ -1,6 +1,8 @@
 from api import vk
 from dbF.get_groups import get_groups, add_group # method to get and add already parsed groups from vk
 
+GROUP_CONNECTION_CONFIRMED = 5
+
 def get_friends(id):
     return vk.friends.get(user_id=id)["items"]
 
@@ -44,13 +46,13 @@ def get_groups_by_id(id):
 
             res = list(set(res) - set(group))
 
-            if len(group) > 5: # Здесь можно подумать о том, со скольки человек считать некое сообщество залинкованных друзей группой
+            if len(group) > GROUP_CONNECTION_CONFIRMED: # Здесь можно подумать о том, со скольки человек считать некое сообщество залинкованных друзей группой
                 groups.append(group)
                 add_group(id, group)
         
         return groups
 
-    return list(map(lambda x: [int(y) for y in x[0].split(" ")], groups))
+    return list(map(lambda x: [int(y) for y in x[0].split(" ")], groups)) # Надо было привести в нормальный вид данные
 
 
 if __name__ == "__main__":
